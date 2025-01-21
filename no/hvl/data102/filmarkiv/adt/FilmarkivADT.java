@@ -1,3 +1,4 @@
+package no.hvl.data102.filmarkiv.adt;
 public interface FilmarkivADT {
     /**
     * Hente en film med gitt nr fra arkivet

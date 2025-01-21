@@ -1,5 +1,5 @@
 //Todo 1: Implementere trimme metoder for å fjerne whitespace fra input
-
+package no.hvl.data102.filmarkiv.impl;
 public class Filmarkiv implements FilmarkivADT {
 
     private Film[] filmer;

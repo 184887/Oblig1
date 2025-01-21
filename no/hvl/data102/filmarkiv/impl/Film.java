@@ -1,3 +1,4 @@
+package no.hvl.data102.filmarkiv.impl;
 public class Film {
     private int filmnr;
     private String produsent;
