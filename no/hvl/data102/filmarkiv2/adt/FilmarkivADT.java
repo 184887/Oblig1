@@ -1,7 +1,7 @@
 package no.hvl.data102.filmarkiv2.adt;
+import no.hvl.data102.filmarkiv2.impl.Film;
+import no.hvl.data102.filmarkiv2.impl.Sjanger;
 
-import no.hvl.data102.filmarkiv.impl.Film;
-import no.hvl.data102.filmarkiv.impl.Sjanger;
 
 public interface FilmarkivADT {
     /**
@@ -45,12 +45,7 @@ public interface FilmarkivADT {
     int antall();
     
 
-    Film[] utvid();
-    /**
-     * Utvider arkivet når den er full
-     * @param nyFilmer
-     * @param filmer 
-     * @return filmer men utvidet ved hjelp av midlertidg nyFilmer
-     */
+ 
+   
 
 }

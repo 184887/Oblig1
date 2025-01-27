@@ -87,8 +87,6 @@ public class Filmarkiv implements FilmarkivADT {
         if (delstreng == null) {
             throw new IllegalArgumentException("Ingen treff");
         }
-
-        
         int antallTreff = 0;
         for (int i = 0; i < antall; i++) {
             if (filmer[i] != null && filmer[i].getTittel() != null && 
