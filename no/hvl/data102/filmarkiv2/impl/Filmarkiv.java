@@ -1,5 +1,5 @@
 //Todo 1: Implementere trimme metoder for å fjerne whitespace fra input
-package no.hvl.data102.filmarkiv.impl;
+package no.hvl.data102.filmarkiv2.impl;
 import no.hvl.data102.filmarkiv.adt.*;
 public class Filmarkiv implements FilmarkivADT {
 
@@ -162,5 +162,17 @@ public class Filmarkiv implements FilmarkivADT {
             }
         }
         return count;
+    }
+
+    @Override
+    public void leggTilFilm(no.hvl.data102.filmarkiv.impl.Film nyFilm) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'leggTilFilm'");
+    }
+
+    @Override
+    public int antallSjanger(no.hvl.data102.filmarkiv.impl.Sjanger sjanger) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'antallSjanger'");
     }
 }

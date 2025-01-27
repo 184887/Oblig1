@@ -1,4 +1,4 @@
-package no.hvl.data102.filmarkiv.klient;
+package no.hvl.data102.filmarkiv2.klient;
 
 import no.hvl.data102.filmarkiv.adt.FilmarkivADT;
 import no.hvl.data102.filmarkiv.impl.Film;
