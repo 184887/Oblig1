@@ -50,41 +50,36 @@ public class Filmarkiv implements FilmarkivADT {
         return slettet;
     }
 
-    @Override
-    public Film[] soekTittel(String delstreng) {
-        if (delstreng == null) {
-            throw new IllegalArgumentException("Ingen treff");
+
+    private Film[] soek(String delstreng, java.util.function.Function<Film, String> getField ){
+        if (delstreng == null || getField == null) {
+            throw new IllegalArgumentException("Ugyldig input");
         }
         LinearNode<Film> denne = start;
         Film[] filmer = new Film[antall];
         int antallFunnet = 0;
+    
         while (denne != null) {
-            if (denne.getData().getTittel() != null && 
-                denne.getData().getTittel().toLowerCase().contains(delstreng.toLowerCase())) {
+            String felt = getField.apply(denne.getData()); 
+            if (felt != null && felt.toLowerCase().contains(delstreng.toLowerCase())) {
                 filmer[antallFunnet++] = denne.getData();
             }
             denne = denne.getNeste();
         }
+    
         return trimTab(filmer, antallFunnet);
+        
+    }
+
+    @Override
+    public Film[] soekTittel(String delstreng) {
+        return soek(delstreng, Film::getTittel);
     }
     
 
     @Override
     public Film[] soekProdusent(String delstreng) {
-        if (delstreng == null) {
-            throw new IllegalArgumentException("Ingen treff");
-        }
-        LinearNode<Film> denne = start;
-        Film[] filmer = new Film[antall];
-        int antallFunnet = 0;
-        while (denne != null) {
-            if (denne.getData().getProdusent() != null && 
-                denne.getData().getProdusent().toLowerCase().contains(delstreng.toLowerCase())) {
-                filmer[antallFunnet++] = denne.getData();
-            }
-            denne = denne.getNeste();
-        }
-        return trimTab(filmer, antallFunnet);
+        return soek(delstreng, Film::getProdusent);
     }
 
     @Override

@@ -1,11 +1,15 @@
-//Todo 1: Implementere trimme metoder for å fjerne whitespace fra input
 package no.hvl.data102.filmarkiv.impl;
 import no.hvl.data102.filmarkiv.adt.*;
 public class Filmarkiv implements FilmarkivADT {
 
     private Film[] filmer;
-    private int antall = 0;
+    private int antall; 
 
+    public Filmarkiv(int film){
+        this.filmer = new Film[film]; 
+        antall = 0; 
+    }
+  
     @Override
     public int antall() {
         return antall;
@@ -18,7 +22,6 @@ public class Filmarkiv implements FilmarkivADT {
             }
             System.out.println(film.getFilmnr() + " " + film.getProdusent() + " " + film.getTittel() + " " + film.getLanseringsAar() + " " + film.getSjanger() + " " + film.getFilmskap());
         }
-
     }
 
     private Film[] trimTab(Film[] tab, int n) {
@@ -82,83 +85,50 @@ public class Filmarkiv implements FilmarkivADT {
         antall = 0;
     }
 
-    @Override
-    public Film[] soekTittel(String delstreng) {
+
+    private Film[] soek(String delstreng, java.util.function.Function<Film, String> getFiled ){
         if (delstreng == null) {
             throw new IllegalArgumentException("Ingen treff");
         }
         int antallTreff = 0;
         for (int i = 0; i < antall; i++) {
-            if (filmer[i] != null && filmer[i].getTittel() != null && 
-                filmer[i].getTittel().toLowerCase().contains(delstreng.toLowerCase())) {
+            if (filmer[i] != null && getFiled.apply(filmer[i]) != null && 
+            getFiled.apply(filmer[i]).toLowerCase().contains(delstreng.toLowerCase())) {
                 antallTreff++;
             }
         }
-
-        
-    
-    
         Film[] resultat = new Film[antallTreff];
         int ind = 0;
         for (int i = 0; i < antall; i++) {
-            if (filmer[i] != null && filmer[i].getTittel() != null && 
-                filmer[i].getTittel().toLowerCase().contains(delstreng.toLowerCase())) {
+            if (filmer[i] != null && getFiled.apply(filmer[i]) != null && 
+            getFiled.apply(filmer[i]).toLowerCase().contains(delstreng.toLowerCase())) {
                 resultat[ind] = filmer[i];
                 ind++;
             }
         }
         return resultat;
     }
+    @Override
+    public Film[] soekTittel(String delstreng) {
+        return soek(delstreng, Film::getTittel);
+    }
+     
 
     @Override
     public Film[] soekProdusent(String delstreng) {
-        if (delstreng == null) {
-            return new Film[0];
-        }
-        
-        int antallTreff = 0;
-        for (int i = 0; i < antall; i++) {
-            if (filmer[i] != null && filmer[i].getFilmskap() != null && 
-                filmer[i].getFilmskap().toLowerCase().contains(delstreng.toLowerCase())) {
-                antallTreff++;
-            }
-        }
-        
- 
-        Film[] resultat = new Film[antallTreff];
-        int ind = 0;
-        for (int i = 0; i < antall; i++) {
-            if (filmer[i] != null && filmer[i].getFilmskap() != null && 
-                filmer[i].getFilmskap().toLowerCase().contains(delstreng.toLowerCase())) {
-                resultat[ind] = filmer[i];
-                ind++;
-            }
-        }
-        return resultat;
+        return soek(delstreng, Film::getProdusent);
     }
+    
 
     @Override
     public int antallSjanger(Sjanger sjanger) {
-        if (sjanger == null) {
-            return 0;
-        }
-        
-        int antall = 0;
-        for (int i = 0; i < this.antall; i++) {
-            if (filmer[i] != null && sjanger.equals(filmer[i].getSjanger())) {
-                antall++;
-            }
-        }
-        return antall;
-    }  
-
-    public int antall(Sjanger sjanger) {
         int count = 0;
         for (Film film : filmer) {
-            if (film.getSjanger() == sjanger) {
+            if (film != null && film.getSjanger().equals(sjanger)) {
                 count++;
             }
-        }
-        return count;
+ 
+    }  
+    return count; 
     }
 }

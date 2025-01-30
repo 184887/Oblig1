@@ -7,7 +7,9 @@ public class Film {
     private Sjanger sjanger;
     private String filmskap;
 
-
+    public Film(){
+        
+    }
     
 
     public Film(int filmnr, String produsent, String tittel, int lanseringsAar, Sjanger sjanger, String filmskap) {
@@ -18,6 +20,7 @@ public class Film {
         this.sjanger = sjanger;
         this.filmskap = filmskap;
     }
+
 
     public int getFilmnr() {
         return filmnr;
