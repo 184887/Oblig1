@@ -27,7 +27,6 @@ boolean validInput = false;
         sjangerValg[i] = Sjanger.values()[i].name();
     }
 
-
     String sjanger = (String) javax.swing.JOptionPane.showInputDialog(
         null,
         "Velg sjanger:",
@@ -40,7 +39,6 @@ boolean validInput = false;
     String filmskap = javax.swing.JOptionPane.showInputDialog("Filmskap: ");
     return new Film(filmnr, produsent, tittel, lanseringsAar, Sjanger.valueOf(sjanger), filmskap);
     }
-
 
     public void skrivUtFilm(Film film) {
     javax.swing.JOptionPane.showMessageDialog(null, film.toString());
@@ -59,7 +57,7 @@ boolean validInput = false;
   
     public void skrivUtFilmProdusent(FilmarkivADT arkiv, String delstreng) {
         StringBuilder sb = new StringBuilder();
-        sb.append("Filmer med delstrengen " + delstreng + " i tittelen:\n");
+        sb.append("Filmer med delstrengen " + delstreng + " i produsent:\n");
         for (Film film : arkiv.soekTittel(delstreng)) {
             if (film != null && film.getProdusent().toLowerCase().contains(delstreng.toLowerCase())) {
                 sb.append(film.toString() + "\n");
@@ -82,10 +80,5 @@ boolean validInput = false;
     }
 
 
-    
-
-    
-    
-
     }
-    // osv ... andre metoder
+

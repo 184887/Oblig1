@@ -59,7 +59,7 @@ boolean validInput = false;
   
     public void skrivUtFilmProdusent(FilmarkivADT arkiv, String delstreng) {
         StringBuilder sb = new StringBuilder();
-        sb.append("Filmer med delstrengen " + delstreng + " i tittelen:\n");
+        sb.append("Filmer med delstrengen " + delstreng + " i Produsent:\n");
         for (Film film : arkiv.soekTittel(delstreng)) {
             if (film != null && film.getProdusent().toLowerCase().contains(delstreng.toLowerCase())) {
                 sb.append(film.toString() + "\n");
